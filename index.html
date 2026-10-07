@@ -1,294 +1,376 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
-<title>Social UTM Cheat Sheet</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luminate · UTM Link Builder</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Anton&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ground:#F0E8D3; --surface:#FAF5E8; --surface-2:#E8DDC2;
-  --ink:#1E1F25; --ink-2:#57544B; --ink-3:#8A8375; --rule:#DCD1B7; --rule-2:#C9BC9C;
-  --li:#1C5FA8; --ig:#B02F6E; --good:#00785A; --bad:#B23A2A;
-  --sans:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;
-  --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --ground:#16171B; --surface:#1E1F25; --surface-2:#282932;
-    --ink:#F0E8D3; --ink-2:#B4AE9F; --ink-3:#867F71; --rule:#32333B; --rule-2:#42444D;
-    --li:#3D86D4; --ig:#D2588F; --good:#23997A; --bad:#D8624B;
+  :root{
+    --c9:#101014; --c8:#18181C; --c7:#1E1F25; --g9:#33343A; --g7:#5E5E63; --g6:#737478;
+    --g4:#9D9EA1; --g3:#B3B3B5; --g2:#C8C8CA; --cream:#F0E8D3; --cr3:#F6F1E5; --cr2:#F9F6EE;
+    --blue:#59C7EE; --pink:#FFADF2; --purple:#A18EF8; --neon:#C2FF0A; --yellow:#FFCC18; --orange:#FE4D01; --olive:#819141;
+    --sans:'Archivo','Helvetica Neue',Arial,sans-serif; --disp:'Anton','Archivo Black',Impact,sans-serif;
   }
-}
-:root[data-theme="dark"]{
-  --ground:#16171B; --surface:#1E1F25; --surface-2:#282932;
-  --ink:#F0E8D3; --ink-2:#B4AE9F; --ink-3:#867F71; --rule:#32333B; --rule-2:#42444D;
-  --li:#3D86D4; --ig:#D2588F; --good:#23997A; --bad:#D8624B;
-}
-*{box-sizing:border-box}
-body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;
-  line-height:1.55;margin:0;-webkit-font-smoothing:antialiased}
-.page{max-width:860px;margin:0 auto;padding:40px 34px 70px}
-h1,h2,h3{margin:0;text-wrap:balance}
-.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--ink-3)}
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:var(--sans); color:var(--c9); background:var(--cr2); line-height:1.5; -webkit-font-smoothing:antialiased; }
+  a{ color:var(--c9); }
+  .wrap{ max-width:1060px; margin:0 auto; padding:0 24px 80px; }
 
-header{border-bottom:2px solid var(--ink);padding-bottom:16px}
-.brandmark{display:flex;align-items:center;gap:9px;margin-bottom:9px}
-.glyph{width:15px;height:15px;border-radius:50%;background:var(--ink)}
-.brandmark b{font-size:12.5px;font-weight:700;letter-spacing:.02em}
-h1{font-size:34px;font-weight:700;letter-spacing:-.022em;line-height:1.08}
-.dek{margin:9px 0 0;font-size:15.5px;color:var(--ink-2);max-width:62ch}
+  /* header */
+  header{ background:var(--c9); color:var(--cream); }
+  .hd{ max-width:1060px; margin:0 auto; padding:26px 24px 30px; }
+  .brandrow{ display:flex; justify-content:space-between; align-items:baseline; border-bottom:1.5px solid rgba(240,232,211,.3); padding-bottom:12px; }
+  .brandrow .wm{ font-weight:800; letter-spacing:2px; font-size:15px; }
+  .brandrow .wm span{ font-weight:400; color:var(--g4); }
+  .brandrow .tag{ font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--g4); }
+  h1{ font-family:var(--disp); font-size:clamp(34px,6vw,58px); line-height:0.92; letter-spacing:.5px; margin-top:22px; }
+  .sub{ margin-top:12px; font-size:15px; color:var(--cream); max-width:680px; }
+  .sub b{ color:var(--yellow); }
+  .rule{ width:56px; height:5px; background:var(--neon); margin-top:18px; }
 
-section{margin-top:36px}
-.sec-head{display:flex;align-items:baseline;gap:13px;border-bottom:1px solid var(--rule-2);
-  padding-bottom:7px;margin-bottom:18px}
-.sec-head h2{font-size:15.5px;font-weight:700}
-.sec-head .note{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--ink-3)}
+  /* layout */
+  .grid{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:26px; margin-top:30px; }
+  @media(max-width:820px){ .grid{ grid-template-columns:1fr; } }
+  .card{ background:#fff; border:1px solid var(--g2); border-radius:6px; padding:22px; }
+  .card h2{ font-size:12px; letter-spacing:1.6px; text-transform:uppercase; color:var(--g7); font-weight:800; margin-bottom:16px; }
+  .card h2 .req{ color:var(--orange); }
 
-/* platform cards */
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.card{border-top:3px solid var(--li);background:var(--surface);padding:15px 17px 17px}
-.card.ig{border-top-color:var(--ig)}
-.card h3{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
-.dot{width:9px;height:9px;border-radius:2px;background:var(--li);flex:none}
-.card.ig .dot{background:var(--ig)}
-.card .sub{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);margin:3px 0 13px}
-.field{margin-bottom:11px}
-.field:last-child{margin-bottom:0}
-.fname{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);letter-spacing:.03em;
-  display:block;margin-bottom:4px}
-button.val{font-family:var(--mono);font-size:17px;font-weight:600;color:var(--ink);
-  background:var(--ground);border:1px solid var(--rule-2);padding:7px 11px;cursor:pointer;
-  display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;
-  text-align:left;letter-spacing:-.01em}
-button.val:hover{border-color:var(--ink)}
-button.val:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-button.val .cue{font-family:var(--mono);font-size:9.5px;font-weight:400;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--ink-3);flex:none}
-button.val.copied .cue{color:var(--good)}
-.orwrap{display:flex;align-items:center;gap:9px;margin-top:6px}
-.orwrap .or{font-family:var(--mono);font-size:10px;color:var(--ink-3);flex:none}
+  label{ display:block; font-size:11px; letter-spacing:.4px; text-transform:uppercase; font-weight:700; color:var(--g7); margin:14px 0 5px; }
+  label .opt{ color:var(--g4); font-weight:500; text-transform:none; letter-spacing:0; }
+  label .star{ color:var(--orange); }
+  .hint{ font-size:11px; color:var(--g6); margin-top:4px; }
+  input[type=text]{ width:100%; font-family:var(--sans); font-size:14px; padding:10px 12px; border:1.5px solid var(--g3); border-radius:4px; background:#fff; color:var(--c9); }
+  input[type=text]:focus{ outline:none; border-color:var(--c9); }
+  input.bad{ border-color:var(--orange); background:#fff6f3; }
 
-/* optional block */
-.opt{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.opt .box{border:1px solid var(--rule-2);padding:14px 16px 16px;background:var(--surface)}
-.opt h3{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.02em}
-.badge{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink-3);border:1px solid var(--rule-2);padding:2px 7px;margin-left:8px;
-  vertical-align:2px}
-.opt p{margin:7px 0 10px;font-size:13.5px;color:var(--ink-2)}
-.fmt{font-family:var(--mono);font-size:13px;background:var(--surface-2);padding:6px 9px;
-  display:inline-block;margin-bottom:9px}
-.egs{display:flex;flex-wrap:wrap;gap:6px}
-.eg{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);border:1px solid var(--rule);
-  padding:3px 8px}
+  .row2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:520px){ .row2{ grid-template-columns:1fr; } }
 
-/* example */
-.example{background:var(--surface);border:1px solid var(--rule-2);padding:17px 19px 19px}
-.exrow{margin-bottom:14px}
-.exrow:last-child{margin-bottom:0}
-.exlab{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink-3);margin-bottom:5px}
-.url{font-family:var(--mono);font-size:12.5px;line-height:1.75;word-break:break-all;
-  background:var(--ground);border:1px solid var(--rule);padding:9px 11px}
-.url b{color:var(--ink);font-weight:600}
-.url .plain{color:var(--ink-2)}
+  .toggles{ display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-top:16px; font-size:12px; color:var(--g9); }
+  .toggles label{ display:flex; align-items:center; gap:6px; margin:0; text-transform:none; letter-spacing:0; font-weight:500; color:var(--g9); font-size:12px; cursor:pointer; }
+  .toggles input{ width:15px; height:15px; accent-color:var(--orange); }
 
-/* steps */
-ol.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:grid;gap:1px;
-  background:var(--rule);border:1px solid var(--rule)}
-ol.steps li{counter-increment:s;background:var(--ground);padding:12px 15px 12px 46px;
-  position:relative;font-size:14px}
-ol.steps li::before{content:counter(s);position:absolute;left:15px;top:12px;
-  font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ink-3)}
-ol.steps b{font-weight:600}
-ol.steps code{font-family:var(--mono);font-size:12.5px;background:var(--surface-2);padding:1px 5px}
+  .btn{ font-family:var(--sans); font-weight:700; font-size:13px; letter-spacing:.3px; border:none; border-radius:4px; padding:11px 16px; cursor:pointer; }
+  .btn.p{ background:var(--c9); color:var(--cream); }
+  .btn.p:hover{ background:var(--c7); }
+  .btn.g{ background:var(--cream); color:var(--c9); border:1.5px solid var(--g3); }
+  .btn.g:hover{ background:var(--cr3); }
+  .btn.sm{ padding:6px 10px; font-size:11px; }
+  .btn.y{ background:var(--yellow); color:var(--c9); }
+  .btnrow{ display:flex; gap:10px; margin-top:18px; flex-wrap:wrap; }
 
-/* do / dont */
-.rules{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.rules h3{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-  padding-bottom:7px;border-bottom:1px solid var(--rule-2);margin-bottom:11px}
-.rules .do h3{color:var(--good)}
-.rules .dont h3{color:var(--bad)}
-.rules ul{margin:0;padding:0;list-style:none}
-.rules li{font-size:13.5px;color:var(--ink-2);padding-left:19px;position:relative;margin-bottom:9px;
-  line-height:1.5}
-.rules li::before{position:absolute;left:0;top:0;font-family:var(--mono);font-weight:600}
-.rules .do li::before{content:"✓";color:var(--good)}
-.rules .dont li::before{content:"✕";color:var(--bad)}
-.rules code{font-family:var(--mono);font-size:12.5px;background:var(--surface-2);padding:1px 5px}
-.rules b{color:var(--ink);font-weight:600}
+  /* output */
+  .out{ background:var(--c9); color:var(--cream); border-radius:6px; padding:18px 20px; }
+  .out .olab{ font-size:10px; letter-spacing:1.6px; text-transform:uppercase; color:var(--g4); font-weight:800; margin-bottom:10px; }
+  .urlbox{ font-family:'SF Mono',ui-monospace,Menlo,Consolas,monospace; font-size:13px; line-height:1.55; word-break:break-all; background:var(--c7); border:1px solid #2c2d35; border-radius:4px; padding:13px 14px; min-height:54px; }
+  .urlbox .base{ color:var(--cream); }
+  .urlbox .k{ color:var(--neon); }
+  .urlbox .v{ color:var(--yellow); }
+  .urlbox .amp{ color:var(--g4); }
+  .urlbox.empty{ color:var(--g6); font-family:var(--sans); }
+  .copied{ color:var(--neon); font-size:12px; font-weight:700; margin-left:8px; opacity:0; transition:opacity .2s; }
+  .copied.show{ opacity:1; }
 
-.heads-up{margin-top:32px;border-left:3px solid var(--rule-2);padding:3px 0 3px 16px;
-  font-size:13.5px;color:var(--ink-2);max-width:74ch}
-.heads-up b{color:var(--ink);font-weight:600}
-footer{margin-top:34px;border-top:1px solid var(--rule);padding-top:12px;
-  font-family:var(--mono);font-size:10.5px;color:var(--ink-3);line-height:1.8}
+  /* history */
+  .hist{ margin-top:34px; }
+  .histhead{ display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:10px; }
+  .histhead h2{ font-family:var(--disp); font-size:22px; letter-spacing:.5px; }
+  .histhead .cnt{ font-size:12px; color:var(--g6); font-weight:600; }
+  .histactions{ display:flex; gap:8px; }
+  table{ width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--g2); border-radius:6px; overflow:hidden; font-size:12.5px; }
+  thead th{ background:var(--c9); color:var(--cream); text-align:left; font-size:10px; letter-spacing:.6px; text-transform:uppercase; padding:10px 12px; font-weight:700; }
+  tbody td{ padding:10px 12px; border-top:1px solid var(--g2); vertical-align:top; color:var(--g9); }
+  tbody tr:hover{ background:var(--cr3); }
+  td.u{ font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:11.5px; word-break:break-all; max-width:360px; color:var(--c9); }
+  td.when{ white-space:nowrap; color:var(--g6); font-size:11px; }
+  .pillset span{ display:inline-block; background:var(--cr3); border:1px solid var(--g2); border-radius:3px; padding:1px 6px; font-size:10.5px; margin:1px 2px 1px 0; color:var(--g9); }
+  .rowbtns{ display:flex; gap:5px; white-space:nowrap; }
+  .lnk{ background:none; border:none; color:var(--orange); font-weight:700; font-size:11px; cursor:pointer; padding:2px 4px; font-family:var(--sans); }
+  .lnk:hover{ text-decoration:underline; }
+  .empty-h{ text-align:center; color:var(--g6); padding:26px; font-size:13px; }
+  .note{ font-size:11.5px; color:var(--g6); margin-top:10px; }
 
-@media (max-width:720px){
-  .page{padding:26px 18px 50px}
-  .cards,.opt,.rules{grid-template-columns:1fr}
-  h1{font-size:26px}
-}
-@media print{
-  @page{size:Letter;margin:.45in}
-  body{background:#F0E8D3;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .page{max-width:none;padding:0}
-  section,.card,.example,.rules{break-inside:avoid}
-  button.val .cue{display:none}
-}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  /* cheatsheet */
+  details.cheat{ margin-top:30px; background:#fff; border:1px solid var(--g2); border-radius:6px; padding:4px 20px; }
+  details.cheat summary{ cursor:pointer; font-size:12px; letter-spacing:1.4px; text-transform:uppercase; font-weight:800; color:var(--g7); padding:16px 0; list-style:none; }
+  details.cheat summary::-webkit-details-marker{ display:none; }
+  details.cheat summary::before{ content:'▸ '; color:var(--orange); }
+  details.cheat[open] summary::before{ content:'▾ '; }
+  .cheat-body{ padding:4px 0 20px; }
+  .cheat-body p{ font-size:13px; color:var(--g9); margin-bottom:10px; max-width:760px; }
+  .cheat-body table{ margin:8px 0 16px; }
+  .cheat-body code{ font-family:'SF Mono',ui-monospace,Menlo,monospace; background:var(--cr3); padding:1px 5px; border-radius:3px; font-size:12px; }
+  .foot{ margin-top:36px; padding-top:16px; border-top:1px solid var(--g3); font-size:11px; color:var(--g6); letter-spacing:.3px; }
+  .foot b{ color:var(--c9); font-weight:800; letter-spacing:1px; }
 </style>
-
-<div class="page">
-
+</head>
+<body>
 <header>
-  <div class="brandmark"><span class="glyph"></span><b>LUMINATE</b>
-    <span class="eyebrow">&nbsp;&middot;&nbsp; Social</span></div>
-  <h1>Tagging links for social</h1>
-  <p class="dek">Add two short tags to any link before you post it, and the traffic shows up
-  correctly in our reporting. Takes about thirty seconds.</p>
+  <div class="hd">
+    <div class="brandrow">
+      <div class="wm">LUMINATE <span>/ Marketing</span></div>
+      <div class="tag">Campaign Tagging</div>
+    </div>
+    <h1>UTM LINK BUILDER</h1>
+    <p class="sub">Build consistent, trackable campaign links so social, email and referral traffic shows up correctly in GA4 — and <b>stops hiding in untagged sources</b>. Enter a destination URL, fill the UTM fields, copy the result. Every link you generate is saved to the history below.</p>
+    <div class="rule"></div>
+  </div>
 </header>
 
-<section>
-  <div class="sec-head"><span class="eyebrow">01</span><h2>Copy these exactly</h2>
-    <span class="note">click any value to copy</span></div>
-  <div class="cards">
-
+<div class="wrap">
+  <div class="grid">
+    <!-- BUILDER -->
     <div class="card">
-      <h3><span class="dot"></span>LinkedIn</h3>
-      <p class="sub">Company page posts</p>
-      <div class="field"><span class="fname">Campaign source</span>
-        <button class="val" data-copy>linkedin<span class="cue">Copy</span></button></div>
-      <div class="field"><span class="fname">Campaign medium</span>
-        <button class="val" data-copy>social<span class="cue">Copy</span></button>
-        <div class="orwrap"><span class="or">or, if it's an ad</span>
-          <button class="val" data-copy>paid_social<span class="cue">Copy</span></button></div>
+      <h2>Build a link <span class="req">· required *</span></h2>
+
+      <label>Destination URL <span class="star">*</span></label>
+      <input type="text" id="base" placeholder="https://luminatedata.com/reports/release-strategies-2026" autocomplete="off">
+      <div class="hint" id="baseHint">The page you want people to land on.</div>
+
+      <label>utm_source <span class="star">*</span> <span class="opt">— where the traffic comes from</span></label>
+      <input type="text" id="source" list="sourceList" placeholder="linkedin" autocomplete="off">
+      <datalist id="sourceList">
+        <option value="linkedin"><option value="instagram"><option value="x"><option value="reddit">
+        <option value="bluesky"><option value="facebook"><option value="threads"><option value="youtube">
+        <option value="newsletter"><option value="email"><option value="partner"><option value="event">
+      </datalist>
+
+      <label>utm_medium <span class="star">*</span> <span class="opt">— the type of channel</span></label>
+      <input type="text" id="medium" list="mediumList" placeholder="social" autocomplete="off">
+      <datalist id="mediumList">
+        <option value="social"><option value="paid_social"><option value="email"><option value="newsletter">
+        <option value="referral"><option value="cpc"><option value="display"><option value="organic">
+      </datalist>
+      <div class="hint"><code style="font-size:11px">social</code> for organic posts, <code style="font-size:11px">paid_social</code> for ads.</div>
+
+      <label>utm_campaign <span class="star">*</span> <span class="opt">— the initiative · format: yyyy-mm-topic</span></label>
+      <input type="text" id="campaign" list="campaignList" placeholder="2026-09-release-strategies" autocomplete="off">
+      <datalist id="campaignList">
+        <option value="2026-09-release-strategies"><option value="2026-09-hybe-case-study"><option value="2026-09-midyear-report">
+        <option value="2026-09-tv-renewals"><option value="2026-data-forum"><option value="always-on-social">
+      </datalist>
+      <div class="hint">Groups several posts pushing the same thing. <button type="button" id="ymBtn" class="lnk" style="padding:0">insert this month ›</button></div>
+
+      <div class="row2">
+        <div>
+          <label>utm_content <span class="opt">optional</span></label>
+          <input type="text" id="content" list="contentList" placeholder="carousel" autocomplete="off">
+          <datalist id="contentList">
+            <option value="carousel"><option value="single-image"><option value="reel"><option value="story"><option value="bio-link"><option value="cta-button">
+          </datalist>
+          <div class="hint">Tells two posts apart — which creative/format.</div>
+        </div>
+        <div>
+          <label>utm_term <span class="opt">optional</span></label>
+          <input type="text" id="term" placeholder="paid keyword" autocomplete="off">
+          <div class="hint">Paid keywords only; leave blank for organic.</div>
+        </div>
+      </div>
+
+      <div class="toggles">
+        <label><input type="checkbox" id="lc" checked> Normalize values (lowercase, spaces → hyphens)</label>
+      </div>
+
+      <div class="btnrow">
+        <button class="btn p" id="genBtn">Generate &amp; save link</button>
+        <button class="btn g" id="clearForm">Clear fields</button>
       </div>
     </div>
 
-    <div class="card ig">
-      <h3><span class="dot"></span>Instagram</h3>
-      <p class="sub">Posts, reels, stories, link in bio</p>
-      <div class="field"><span class="fname">Campaign source</span>
-        <button class="val" data-copy>instagram<span class="cue">Copy</span></button></div>
-      <div class="field"><span class="fname">Campaign medium</span>
-        <button class="val" data-copy>social<span class="cue">Copy</span></button>
-        <div class="orwrap"><span class="or">or, if it's an ad</span>
-          <button class="val" data-copy>paid_social<span class="cue">Copy</span></button></div>
+    <!-- OUTPUT -->
+    <div>
+      <div class="out">
+        <div class="olab">Your tagged URL <span class="copied" id="copied">Copied ✓</span></div>
+        <div class="urlbox empty" id="urlOut">Fill in the required fields to see your link…</div>
+        <div class="btnrow">
+          <button class="btn y" id="copyBtn">Copy link</button>
+          <button class="btn g" id="copyMd" style="background:var(--cr3)">Copy as Markdown</button>
+        </div>
+      </div>
+      <div class="note">Only tag links that point to <b>luminatedata.com</b> — never a link from one of our pages to another. Keep values consistent: GA4 treats <code>LinkedIn</code> and <code>linkedin</code> as two sources (normalization, on by default, prevents that). Once tagging starts, this traffic moves out of <b>Referral</b> and into <b>Organic Social</b> in the reports — expected, not a performance change.</div>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <div class="hist">
+    <div class="histhead">
+      <div>
+        <h2>Link history</h2>
+        <div class="cnt" id="histCount">0 links saved · stored in this browser</div>
+      </div>
+      <div class="histactions">
+        <button class="btn g sm" id="copyAll">Copy all URLs</button>
+        <button class="btn g sm" id="exportCsv">Export CSV</button>
+        <button class="btn g sm" id="clearAll" style="color:var(--orange)">Clear all</button>
       </div>
     </div>
-
+    <table>
+      <thead><tr><th>When</th><th>Tagged URL</th><th>Parameters</th><th></th></tr></thead>
+      <tbody id="histBody"></tbody>
+    </table>
+    <div class="note">History is saved in your browser's local storage (per device/browser). It is <b>not</b> shared across people — use <b>Export CSV</b> to share the campaign-link log with the team or commit it to the repo.</div>
   </div>
-</section>
 
-<section>
-  <div class="sec-head"><span class="eyebrow">02</span><h2>Two more, only if you want them</h2>
-    <span class="note">safe to leave blank</span></div>
-  <div class="opt">
-    <div class="box">
-      <h3>Campaign name<span class="badge">Optional</span></h3>
-      <p>Use it when several posts push the same thing and you want them grouped together.</p>
-      <div class="fmt">yyyy-mm-topic</div>
-      <div class="egs">
-        <span class="eg">2026-09-release-strategies</span>
-        <span class="eg">2026-09-hybe-case-study</span>
-      </div>
+  <!-- CHEAT SHEET -->
+  <details class="cheat">
+    <summary>How UTMs work &amp; Luminate conventions</summary>
+    <div class="cheat-body">
+      <p>UTM parameters are tags added to the end of a link that tell Google Analytics <em>where</em> a visit came from. Without them, clicks from LinkedIn, Instagram link-in-bio, newsletters and partners often land in GA4 as “Referral”, “(not set)”, or untagged sources like <code>ig</code> — which is exactly why our weekly social number under-counts real traffic. A tagged link fixes attribution at the source.</p>
+      <p>A finished link looks like:<br>
+      <code>https://luminatedata.com/reports/x?utm_source=linkedin&amp;utm_medium=social&amp;utm_campaign=release-strategies-2026</code></p>
+      <table>
+        <thead><tr><th>Parameter</th><th>What it answers</th><th>Luminate examples</th></tr></thead>
+        <tbody>
+          <tr><td><code>utm_source</code> *</td><td>Which platform?</td><td>linkedin, instagram, x, reddit, bluesky, newsletter, email</td></tr>
+          <tr><td><code>utm_medium</code> *</td><td>What kind of channel?</td><td>social, paid-social, email, newsletter, referral, cpc</td></tr>
+          <tr><td><code>utm_campaign</code> *</td><td>Which initiative?</td><td>release-strategies-2026, midyear-report-2026, data-forum-2026</td></tr>
+          <tr><td><code>utm_content</code></td><td>Which variant/placement?</td><td>link-in-bio, cta-button, post-20260903, carousel</td></tr>
+          <tr><td><code>utm_term</code></td><td>Which paid keyword?</td><td>music industry data (paid search only)</td></tr>
+        </tbody>
+      </table>
+      <p><b>House rules:</b> always lowercase, use hyphens not spaces, keep a single value per concept (don't mix <code>x</code> and <code>twitter</code>), and tag <em>every</em> outbound link — social posts, link-in-bio, newsletters, partner placements. Consistency is what makes the data add up.</p>
     </div>
-    <div class="box">
-      <h3>Campaign content<span class="badge">Optional</span></h3>
-      <p>Use it to tell two posts apart inside the same campaign &mdash; which creative, which format.</p>
-      <div class="fmt">one or two lowercase words</div>
-      <div class="egs">
-        <span class="eg">carousel</span><span class="eg">single-image</span>
-        <span class="eg">reel</span><span class="eg">story</span><span class="eg">bio-link</span>
-      </div>
-    </div>
-  </div>
-  <p class="heads-up" style="margin-top:18px">Leave <b>Campaign term</b> blank. It's for paid search
-  keywords and we don't use it.</p>
-</section>
+  </details>
 
-<section>
-  <div class="sec-head"><span class="eyebrow">03</span><h2>How to do it</h2></div>
-  <ol class="steps">
-    <li>Copy the link you're sharing &mdash; the real page on <b>luminatedata.com</b>.</li>
-    <li>Open <b>ga-dev-tools.google/campaign-url-builder</b> and paste it into <b>website URL</b>.</li>
-    <li>Fill in <b>campaign source</b> and <b>campaign medium</b> from the boxes above. Add campaign
-      name and content only if you want them.</li>
-    <li>Scroll down and copy the long URL it builds for you.</li>
-    <li>Paste <b>that</b> long URL into the shortener, then share the short link.</li>
-  </ol>
-</section>
-
-<section>
-  <div class="sec-head"><span class="eyebrow">04</span><h2>What it looks like</h2></div>
-  <div class="example">
-    <div class="exrow">
-      <div class="exlab">Your link</div>
-      <div class="url plain">https://luminatedata.com/blog/release-strategies/</div>
-    </div>
-    <div class="exrow">
-      <div class="exlab">After the builder &mdash; this is what you shorten</div>
-      <div class="url"><span class="plain">https://luminatedata.com/blog/release-strategies/</span><b>?utm_source=linkedin&amp;utm_medium=social&amp;utm_campaign=2026-09-release-strategies&amp;utm_content=carousel</b></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="sec-head"><span class="eyebrow">05</span><h2>The bits that break it</h2></div>
-  <div class="rules">
-    <div class="do">
-      <h3>Do</h3>
-      <ul>
-        <li><b>Type everything in lowercase.</b> <code>linkedin</code>, never <code>LinkedIn</code>.</li>
-        <li><b>Use hyphens instead of spaces</b> in campaign names.</li>
-        <li><b>Tag the long URL first</b>, then shorten it.</li>
-        <li><b>Only tag links that point to luminatedata.com.</b></li>
-      </ul>
-    </div>
-    <div class="dont">
-      <h3>Don't</h3>
-      <ul>
-        <li><b>Don't use capitals.</b> Our reports already show <code>linkedin</code>,
-          <code>Linkedin</code> and <code>LinkedIn Ads</code> as three separate sources, splitting
-          the numbers.</li>
-        <li><b>Don't put spaces in a campaign name.</b></li>
-        <li><b>Don't add tags to a short link</b> &mdash; they have to be on the long one.</li>
-        <li><b>Don't tag a link from one page of our site to another.</b> It erases where the person
-          originally came from.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<p class="heads-up"><b>One thing you'll notice.</b> Once we start tagging, this traffic moves out of
-the <b>Referral</b> bucket in the reports and into <b>Organic Social</b>. Referral will drop, Organic
-Social will jump. That's the tagging working, not a change in performance.</p>
-
-<footer>
-  Luminate marketing &middot; questions in #luminate-marketing-analytics &middot;
-  builder at ga-dev-tools.google/campaign-url-builder
-</footer>
-
+  <div class="foot"><b>LUMINATE</b> MARKETING · UTM Link Builder · host this file anywhere (e.g. GitHub Pages) · history lives in the browser</div>
 </div>
 
 <script>
-document.querySelectorAll('button.val[data-copy]').forEach(function (btn) {
-  btn.addEventListener('click', function () {
-    var cue = btn.querySelector('.cue');
-    var text = Array.prototype.filter
-      .call(btn.childNodes, function (n) { return n.nodeType === 3; })
-      .map(function (n) { return n.textContent; }).join('').trim();
-    var done = function (ok) {
-      cue.textContent = ok ? 'Copied' : 'Select it';
-      btn.classList.toggle('copied', ok);
-      setTimeout(function () { cue.textContent = 'Copy'; btn.classList.remove('copied'); }, 1400);
-    };
-    try {
-      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
-    } catch (e) { done(false); }
-  });
-});
-</script>
+(function(){
+  "use strict";
+  var KEY='luminate_utm_history_v1';
+  var $=function(id){return document.getElementById(id);};
+  var fields=['base','source','medium','campaign','content','term'];
+  var lastUrl='';
 
-</body></html>
+  function norm(v){
+    v=(v||'').trim();
+    if($('lc').checked){ v=v.toLowerCase().replace(/\s+/g,'-'); }
+    return v;
+  }
+  function rawBase(){ return ($('base').value||'').trim(); }
+
+  function buildParts(){
+    var base=rawBase();
+    var p=[
+      ['utm_source',norm($('source').value)],
+      ['utm_medium',norm($('medium').value)],
+      ['utm_campaign',norm($('campaign').value)],
+      ['utm_content',norm($('content').value)],
+      ['utm_term',norm($('term').value)]
+    ].filter(function(x){return x[1]!=='';});
+    return {base:base, params:p};
+  }
+  function fullUrl(parts){
+    if(!parts.base) return '';
+    var q=parts.params.map(function(x){return encodeURIComponent(x[0])+'='+encodeURIComponent(x[1]);}).join('&');
+    if(!q) return parts.base;
+    var sep=parts.base.indexOf('?')>=0 ? '&' : '?';
+    return parts.base+sep+q;
+  }
+  function validBase(b){ return /^https?:\/\/.+/i.test(b); }
+
+  function render(){
+    var parts=buildParts();
+    var url=fullUrl(parts);
+    lastUrl=url;
+    var box=$('urlOut');
+    if(!parts.base){
+      box.className='urlbox empty'; box.textContent='Fill in the required fields to see your link…'; return;
+    }
+    // coloured breakdown
+    var html='<span class="base">'+esc(parts.base)+'</span>';
+    var sep=parts.base.indexOf('?')>=0?'&':'?';
+    parts.params.forEach(function(x,i){
+      html+='<span class="amp">'+(i===0?sep:'&')+'</span>';
+      html+='<span class="k">'+esc(x[0])+'</span><span class="amp">=</span><span class="v">'+esc(encodeURIComponent(x[1]))+'</span>';
+    });
+    box.className='urlbox'; box.innerHTML=html;
+  }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+  // ---- storage ----
+  function load(){ try{ return JSON.parse(localStorage.getItem(KEY)||'[]'); }catch(e){ return []; } }
+  function save(list){ try{ localStorage.setItem(KEY,JSON.stringify(list)); }catch(e){} }
+
+  function addEntry(){
+    var base=rawBase();
+    if(!validBase(base)){ $('base').classList.add('bad'); $('baseHint').textContent='Enter a full URL starting with http:// or https://'; $('baseHint').style.color='var(--orange)'; return; }
+    $('base').classList.remove('bad'); $('baseHint').textContent='The page you want people to land on.'; $('baseHint').style.color='';
+    var parts=buildParts();
+    var miss=['source','medium','campaign'].filter(function(f){return norm($(f).value)==='';});
+    if(miss.length){ miss.forEach(function(f){$(f).classList.add('bad');}); return; }
+    ['source','medium','campaign'].forEach(function(f){$(f).classList.remove('bad');});
+    var g=function(f){return norm($(f).value);};
+    var entry={ t:Date.now(), url:fullUrl(parts), base:parts.base,
+      source:g('source'), medium:g('medium'), campaign:g('campaign'), content:g('content'), term:g('term') };
+    var list=load(); list.unshift(entry); save(list); renderHist();
+    flashCopied();
+  }
+
+  function fmtWhen(t){ var d=new Date(t); return d.toLocaleDateString(undefined,{month:'short',day:'numeric'})+' '+d.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}); }
+
+  function renderHist(){
+    var list=load(); var body=$('histBody');
+    $('histCount').textContent=list.length+' link'+(list.length===1?'':'s')+' saved · stored in this browser';
+    if(!list.length){ body.innerHTML='<tr><td colspan="4" class="empty-h">No links yet — generate one above and it will appear here.</td></tr>'; return; }
+    body.innerHTML=list.map(function(e,i){
+      var pills='<span class="pillset">'
+        +'<span>src: '+esc(e.source)+'</span><span>med: '+esc(e.medium)+'</span><span>camp: '+esc(e.campaign)+'</span>'
+        +(e.content?'<span>content: '+esc(e.content)+'</span>':'')
+        +(e.term?'<span>term: '+esc(e.term)+'</span>':'')+'</span>';
+      return '<tr>'
+        +'<td class="when">'+fmtWhen(e.t)+'</td>'
+        +'<td class="u">'+esc(e.url)+'</td>'
+        +'<td>'+pills+'</td>'
+        +'<td><div class="rowbtns"><button class="lnk" data-copy="'+i+'">Copy</button><button class="lnk" data-del="'+i+'" style="color:var(--g6)">Delete</button></div></td>'
+        +'</tr>';
+    }).join('');
+  }
+
+  function copyText(txt,cb){
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(cb,function(){fallback(txt,cb);}); }
+    else fallback(txt,cb);
+  }
+  function fallback(txt,cb){ var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); cb&&cb(); }
+  function flashCopied(){ var c=$('copied'); c.classList.add('show'); setTimeout(function(){c.classList.remove('show');},1400); }
+
+  function toCsv(){
+    var list=load();
+    var head=['generated_at','url','base_url','utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+    var rows=list.map(function(e){
+      return [new Date(e.t).toISOString(), e.url, e.base, e.source, e.medium, e.campaign, e.content, e.term]
+        .map(function(v){ v=(v==null?'':String(v)); return '"'+v.replace(/"/g,'""')+'"'; }).join(',');
+    });
+    return head.join(',')+'\n'+rows.join('\n');
+  }
+
+  // ---- events ----
+  fields.forEach(function(f){ $(f).addEventListener('input',render); });
+  $('lc').addEventListener('change',render);
+  $('genBtn').addEventListener('click',addEntry);
+  $('clearForm').addEventListener('click',function(){ fields.forEach(function(f){$(f).value='';$(f).classList.remove('bad');}); render(); });
+  $('ymBtn').addEventListener('click',function(){ var d=new Date(), ym=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'; var c=$('campaign'); if(c.value.indexOf(ym)!==0){ c.value=ym+c.value.replace(/^\d{4}-\d{2}-/,''); } c.focus(); render(); });
+  $('copyBtn').addEventListener('click',function(){ if(lastUrl){ copyText(lastUrl,flashCopied); } });
+  $('copyMd').addEventListener('click',function(){ if(lastUrl){ var c=$('campaign').value||'link'; copyText('['+c+']('+lastUrl+')',flashCopied); } });
+  $('copyAll').addEventListener('click',function(){ var list=load(); if(list.length) copyText(list.map(function(e){return e.url;}).join('\n'),flashCopied); });
+  $('exportCsv').addEventListener('click',function(){
+    var blob=new Blob([toCsv()],{type:'text/csv'}); var a=document.createElement('a');
+    a.href=URL.createObjectURL(blob); a.download='luminate-utm-links-'+new Date().toISOString().slice(0,10)+'.csv';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  });
+  $('clearAll').addEventListener('click',function(){ if(confirm('Clear all saved links from this browser?')){ save([]); renderHist(); } });
+  $('histBody').addEventListener('click',function(ev){
+    var cb=ev.target.getAttribute('data-copy'), dl=ev.target.getAttribute('data-del');
+    if(cb!==null){ var l=load(); copyText(l[+cb].url,flashCopied); }
+    if(dl!==null){ var l2=load(); l2.splice(+dl,1); save(l2); renderHist(); }
+  });
+
+  render(); renderHist();
+})();
+</script>
+</body>
+</html>
