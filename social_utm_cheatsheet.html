@@ -1,0 +1,294 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>Social UTM Cheat Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#F0E8D3; --surface:#FAF5E8; --surface-2:#E8DDC2;
+  --ink:#1E1F25; --ink-2:#57544B; --ink-3:#8A8375; --rule:#DCD1B7; --rule-2:#C9BC9C;
+  --li:#1C5FA8; --ig:#B02F6E; --good:#00785A; --bad:#B23A2A;
+  --sans:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#16171B; --surface:#1E1F25; --surface-2:#282932;
+    --ink:#F0E8D3; --ink-2:#B4AE9F; --ink-3:#867F71; --rule:#32333B; --rule-2:#42444D;
+    --li:#3D86D4; --ig:#D2588F; --good:#23997A; --bad:#D8624B;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16171B; --surface:#1E1F25; --surface-2:#282932;
+  --ink:#F0E8D3; --ink-2:#B4AE9F; --ink-3:#867F71; --rule:#32333B; --rule-2:#42444D;
+  --li:#3D86D4; --ig:#D2588F; --good:#23997A; --bad:#D8624B;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;
+  line-height:1.55;margin:0;-webkit-font-smoothing:antialiased}
+.page{max-width:860px;margin:0 auto;padding:40px 34px 70px}
+h1,h2,h3{margin:0;text-wrap:balance}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3)}
+
+header{border-bottom:2px solid var(--ink);padding-bottom:16px}
+.brandmark{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.glyph{width:15px;height:15px;border-radius:50%;background:var(--ink)}
+.brandmark b{font-size:12.5px;font-weight:700;letter-spacing:.02em}
+h1{font-size:34px;font-weight:700;letter-spacing:-.022em;line-height:1.08}
+.dek{margin:9px 0 0;font-size:15.5px;color:var(--ink-2);max-width:62ch}
+
+section{margin-top:36px}
+.sec-head{display:flex;align-items:baseline;gap:13px;border-bottom:1px solid var(--rule-2);
+  padding-bottom:7px;margin-bottom:18px}
+.sec-head h2{font-size:15.5px;font-weight:700}
+.sec-head .note{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--ink-3)}
+
+/* platform cards */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{border-top:3px solid var(--li);background:var(--surface);padding:15px 17px 17px}
+.card.ig{border-top-color:var(--ig)}
+.card h3{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+.dot{width:9px;height:9px;border-radius:2px;background:var(--li);flex:none}
+.card.ig .dot{background:var(--ig)}
+.card .sub{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);margin:3px 0 13px}
+.field{margin-bottom:11px}
+.field:last-child{margin-bottom:0}
+.fname{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);letter-spacing:.03em;
+  display:block;margin-bottom:4px}
+button.val{font-family:var(--mono);font-size:17px;font-weight:600;color:var(--ink);
+  background:var(--ground);border:1px solid var(--rule-2);padding:7px 11px;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;
+  text-align:left;letter-spacing:-.01em}
+button.val:hover{border-color:var(--ink)}
+button.val:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+button.val .cue{font-family:var(--mono);font-size:9.5px;font-weight:400;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);flex:none}
+button.val.copied .cue{color:var(--good)}
+.orwrap{display:flex;align-items:center;gap:9px;margin-top:6px}
+.orwrap .or{font-family:var(--mono);font-size:10px;color:var(--ink-3);flex:none}
+
+/* optional block */
+.opt{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.opt .box{border:1px solid var(--rule-2);padding:14px 16px 16px;background:var(--surface)}
+.opt h3{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.02em}
+.badge{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);border:1px solid var(--rule-2);padding:2px 7px;margin-left:8px;
+  vertical-align:2px}
+.opt p{margin:7px 0 10px;font-size:13.5px;color:var(--ink-2)}
+.fmt{font-family:var(--mono);font-size:13px;background:var(--surface-2);padding:6px 9px;
+  display:inline-block;margin-bottom:9px}
+.egs{display:flex;flex-wrap:wrap;gap:6px}
+.eg{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);border:1px solid var(--rule);
+  padding:3px 8px}
+
+/* example */
+.example{background:var(--surface);border:1px solid var(--rule-2);padding:17px 19px 19px}
+.exrow{margin-bottom:14px}
+.exrow:last-child{margin-bottom:0}
+.exlab{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:5px}
+.url{font-family:var(--mono);font-size:12.5px;line-height:1.75;word-break:break-all;
+  background:var(--ground);border:1px solid var(--rule);padding:9px 11px}
+.url b{color:var(--ink);font-weight:600}
+.url .plain{color:var(--ink-2)}
+
+/* steps */
+ol.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:grid;gap:1px;
+  background:var(--rule);border:1px solid var(--rule)}
+ol.steps li{counter-increment:s;background:var(--ground);padding:12px 15px 12px 46px;
+  position:relative;font-size:14px}
+ol.steps li::before{content:counter(s);position:absolute;left:15px;top:12px;
+  font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ink-3)}
+ol.steps b{font-weight:600}
+ol.steps code{font-family:var(--mono);font-size:12.5px;background:var(--surface-2);padding:1px 5px}
+
+/* do / dont */
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.rules h3{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  padding-bottom:7px;border-bottom:1px solid var(--rule-2);margin-bottom:11px}
+.rules .do h3{color:var(--good)}
+.rules .dont h3{color:var(--bad)}
+.rules ul{margin:0;padding:0;list-style:none}
+.rules li{font-size:13.5px;color:var(--ink-2);padding-left:19px;position:relative;margin-bottom:9px;
+  line-height:1.5}
+.rules li::before{position:absolute;left:0;top:0;font-family:var(--mono);font-weight:600}
+.rules .do li::before{content:"✓";color:var(--good)}
+.rules .dont li::before{content:"✕";color:var(--bad)}
+.rules code{font-family:var(--mono);font-size:12.5px;background:var(--surface-2);padding:1px 5px}
+.rules b{color:var(--ink);font-weight:600}
+
+.heads-up{margin-top:32px;border-left:3px solid var(--rule-2);padding:3px 0 3px 16px;
+  font-size:13.5px;color:var(--ink-2);max-width:74ch}
+.heads-up b{color:var(--ink);font-weight:600}
+footer{margin-top:34px;border-top:1px solid var(--rule);padding-top:12px;
+  font-family:var(--mono);font-size:10.5px;color:var(--ink-3);line-height:1.8}
+
+@media (max-width:720px){
+  .page{padding:26px 18px 50px}
+  .cards,.opt,.rules{grid-template-columns:1fr}
+  h1{font-size:26px}
+}
+@media print{
+  @page{size:Letter;margin:.45in}
+  body{background:#F0E8D3;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{max-width:none;padding:0}
+  section,.card,.example,.rules{break-inside:avoid}
+  button.val .cue{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="page">
+
+<header>
+  <div class="brandmark"><span class="glyph"></span><b>LUMINATE</b>
+    <span class="eyebrow">&nbsp;&middot;&nbsp; Social</span></div>
+  <h1>Tagging links for social</h1>
+  <p class="dek">Add two short tags to any link before you post it, and the traffic shows up
+  correctly in our reporting. Takes about thirty seconds.</p>
+</header>
+
+<section>
+  <div class="sec-head"><span class="eyebrow">01</span><h2>Copy these exactly</h2>
+    <span class="note">click any value to copy</span></div>
+  <div class="cards">
+
+    <div class="card">
+      <h3><span class="dot"></span>LinkedIn</h3>
+      <p class="sub">Company page posts</p>
+      <div class="field"><span class="fname">Campaign source</span>
+        <button class="val" data-copy>linkedin<span class="cue">Copy</span></button></div>
+      <div class="field"><span class="fname">Campaign medium</span>
+        <button class="val" data-copy>social<span class="cue">Copy</span></button>
+        <div class="orwrap"><span class="or">or, if it's an ad</span>
+          <button class="val" data-copy>paid_social<span class="cue">Copy</span></button></div>
+      </div>
+    </div>
+
+    <div class="card ig">
+      <h3><span class="dot"></span>Instagram</h3>
+      <p class="sub">Posts, reels, stories, link in bio</p>
+      <div class="field"><span class="fname">Campaign source</span>
+        <button class="val" data-copy>instagram<span class="cue">Copy</span></button></div>
+      <div class="field"><span class="fname">Campaign medium</span>
+        <button class="val" data-copy>social<span class="cue">Copy</span></button>
+        <div class="orwrap"><span class="or">or, if it's an ad</span>
+          <button class="val" data-copy>paid_social<span class="cue">Copy</span></button></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="eyebrow">02</span><h2>Two more, only if you want them</h2>
+    <span class="note">safe to leave blank</span></div>
+  <div class="opt">
+    <div class="box">
+      <h3>Campaign name<span class="badge">Optional</span></h3>
+      <p>Use it when several posts push the same thing and you want them grouped together.</p>
+      <div class="fmt">yyyy-mm-topic</div>
+      <div class="egs">
+        <span class="eg">2026-09-release-strategies</span>
+        <span class="eg">2026-09-hybe-case-study</span>
+      </div>
+    </div>
+    <div class="box">
+      <h3>Campaign content<span class="badge">Optional</span></h3>
+      <p>Use it to tell two posts apart inside the same campaign &mdash; which creative, which format.</p>
+      <div class="fmt">one or two lowercase words</div>
+      <div class="egs">
+        <span class="eg">carousel</span><span class="eg">single-image</span>
+        <span class="eg">reel</span><span class="eg">story</span><span class="eg">bio-link</span>
+      </div>
+    </div>
+  </div>
+  <p class="heads-up" style="margin-top:18px">Leave <b>Campaign term</b> blank. It's for paid search
+  keywords and we don't use it.</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="eyebrow">03</span><h2>How to do it</h2></div>
+  <ol class="steps">
+    <li>Copy the link you're sharing &mdash; the real page on <b>luminatedata.com</b>.</li>
+    <li>Open <b>ga-dev-tools.google/campaign-url-builder</b> and paste it into <b>website URL</b>.</li>
+    <li>Fill in <b>campaign source</b> and <b>campaign medium</b> from the boxes above. Add campaign
+      name and content only if you want them.</li>
+    <li>Scroll down and copy the long URL it builds for you.</li>
+    <li>Paste <b>that</b> long URL into the shortener, then share the short link.</li>
+  </ol>
+</section>
+
+<section>
+  <div class="sec-head"><span class="eyebrow">04</span><h2>What it looks like</h2></div>
+  <div class="example">
+    <div class="exrow">
+      <div class="exlab">Your link</div>
+      <div class="url plain">https://luminatedata.com/blog/release-strategies/</div>
+    </div>
+    <div class="exrow">
+      <div class="exlab">After the builder &mdash; this is what you shorten</div>
+      <div class="url"><span class="plain">https://luminatedata.com/blog/release-strategies/</span><b>?utm_source=linkedin&amp;utm_medium=social&amp;utm_campaign=2026-09-release-strategies&amp;utm_content=carousel</b></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="eyebrow">05</span><h2>The bits that break it</h2></div>
+  <div class="rules">
+    <div class="do">
+      <h3>Do</h3>
+      <ul>
+        <li><b>Type everything in lowercase.</b> <code>linkedin</code>, never <code>LinkedIn</code>.</li>
+        <li><b>Use hyphens instead of spaces</b> in campaign names.</li>
+        <li><b>Tag the long URL first</b>, then shorten it.</li>
+        <li><b>Only tag links that point to luminatedata.com.</b></li>
+      </ul>
+    </div>
+    <div class="dont">
+      <h3>Don't</h3>
+      <ul>
+        <li><b>Don't use capitals.</b> Our reports already show <code>linkedin</code>,
+          <code>Linkedin</code> and <code>LinkedIn Ads</code> as three separate sources, splitting
+          the numbers.</li>
+        <li><b>Don't put spaces in a campaign name.</b></li>
+        <li><b>Don't add tags to a short link</b> &mdash; they have to be on the long one.</li>
+        <li><b>Don't tag a link from one page of our site to another.</b> It erases where the person
+          originally came from.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<p class="heads-up"><b>One thing you'll notice.</b> Once we start tagging, this traffic moves out of
+the <b>Referral</b> bucket in the reports and into <b>Organic Social</b>. Referral will drop, Organic
+Social will jump. That's the tagging working, not a change in performance.</p>
+
+<footer>
+  Luminate marketing &middot; questions in #luminate-marketing-analytics &middot;
+  builder at ga-dev-tools.google/campaign-url-builder
+</footer>
+
+</div>
+
+<script>
+document.querySelectorAll('button.val[data-copy]').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var cue = btn.querySelector('.cue');
+    var text = Array.prototype.filter
+      .call(btn.childNodes, function (n) { return n.nodeType === 3; })
+      .map(function (n) { return n.textContent; }).join('').trim();
+    var done = function (ok) {
+      cue.textContent = ok ? 'Copied' : 'Select it';
+      btn.classList.toggle('copied', ok);
+      setTimeout(function () { cue.textContent = 'Copy'; btn.classList.remove('copied'); }, 1400);
+    };
+    try {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
+    } catch (e) { done(false); }
+  });
+});
+</script>
+
+</body></html>
